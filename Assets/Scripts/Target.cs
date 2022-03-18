@@ -7,7 +7,6 @@ public class Target : MonoBehaviour
 {
     public BoxCollider area;
 
-
     void Start()
     {
         
@@ -24,10 +23,13 @@ public class Target : MonoBehaviour
     {
         var foodStuff = collision.gameObject.GetComponent<XRGrabInteractable>();
 
-        if(foodStuff != null)
+        if(foodStuff != null && GameManager.Instance.isGame())
         {
             Destroy(collision.gameObject);
             ChangeRandomPosition();
+
+            GameManager.Instance.AddScore();
+            GameManager.Instance.SpawnFoodItem();
         }
     }
 
